@@ -32,7 +32,49 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_FILES['import_file'])) {
 }
 ?>
 
-<form action="import_export.php" method="POST" enctype="multipart/form-data">
-    <input type="file" name="import_file" required>
-    <button type="submit" class="btn btn-primary">นำเข้าข้อมูล</button>
+<form action="import_export.php" method="POST" enctype="multipart/form-data" class="import-form">
+    <div class="mb-3">
+        <label for="import_file" class="form-label">เลือกไฟล์ที่ต้องการนำเข้า</label>
+        <input type="file" name="import_file" id="import_file" class="form-control" required>
+    </div>
+    <div class="text-end">
+        <button type="submit" class="btn btn-primary">นำเข้าข้อมูล</button>
+        <button type="button" class="btn btn-secondary" onclick="window.location.href='index.php';">ยกเลิก</button>
+    </div>
 </form>
+
+<style>
+    .import-form {
+        padding: 1rem;
+        border-radius: 8px;
+        background-color: #ffffff;
+    }
+
+    .import-form .form-label {
+        font-weight: bold;
+    }
+
+    .import-form input[type="file"] {
+        background-color: #f8f9fa;
+        border: 1px solid #ced4da;
+        border-radius: 4px;
+    }
+
+    .import-form button {
+        font-size: 16px;
+        padding: 0.5rem 2rem;
+    }
+
+    .import-form .text-end {
+        margin-top: 1rem;
+    }
+
+    .import-form button:hover {
+        background-color: #0069d9;
+        border-color: #0062cc;
+    }
+
+    .modal-content {
+        padding: 2rem;
+    }
+</style>
