@@ -100,7 +100,17 @@ $expenses = $stmt->fetchAll();
                             <?php foreach ($expenses as $expense): ?>
                             <tr>
                                 <td><?php echo htmlspecialchars($expense['date']); ?></td>
-                                <td><?php echo htmlspecialchars($expense['type']); ?></td>
+                                <td>
+                                    <?php 
+                                        if ($expense['type'] == 'income') {
+                                            echo 'รายรับ';
+                                        } elseif ($expense['type'] == 'expense') {
+                                            echo 'รายจ่าย';
+                                        } else {
+                                            echo 'ไม่ระบุประเภท';
+                                        }
+                                    ?>
+                                </td>
                                 <td><?php echo htmlspecialchars($expense['category']); ?></td>
                                 <td><?php echo number_format($expense['amount'], 2); ?></td>
                             </tr>
@@ -110,7 +120,7 @@ $expenses = $stmt->fetchAll();
 
                     <div class="mt-3 text-end">
                         <button class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteConfirmModal">
-                            ลบข้อมูลทั้งหมด
+                            🗑️ ลบข้อมูลทั้งหมด
                         </button>
                     </div>
                 </div>
