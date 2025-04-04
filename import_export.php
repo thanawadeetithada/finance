@@ -12,11 +12,14 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_FILES['import_file'])) {
     $sheet = $spreadsheet->getActiveSheet();
     $rows = $sheet->toArray();
 
-    foreach ($rows as $row) {
+    foreach ($rows as $index => $row) {
+        if ($index == 0) continue;
+        
         $date = $row[0];
         $type = $row[1];
         $category = $row[2];
         $amount = $row[3];
+
         if (!empty($date) && !empty($type) && !empty($category) && !empty($amount)) {
             $sql = "INSERT INTO expenses (date, type, category, amount) VALUES (:date, :type, :category, :amount)";
             $stmt = $pdo->prepare($sql);
@@ -28,7 +31,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_FILES['import_file'])) {
         }
     }
 
-    echo "<script>alert('นำเข้าข้อมูลสำเร็จ'); window.location = 'index.php';</script>";
+    echo "<script>window.location = 'index.php';</script>";
 }
 ?>
 

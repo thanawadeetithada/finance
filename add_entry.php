@@ -15,7 +15,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $stmt->bindParam(':amount', $amount);
     
     if ($stmt->execute()) {
-        echo "<script>alert('บันทึกรายการสำเร็จ'); window.location = 'index.php';</script>";
+        echo "<script>window.location = 'index.php';</script>";
     } else {
         echo "<script>alert('เกิดข้อผิดพลาด'); window.location = 'index.php';</script>";
     }
